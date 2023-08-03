@@ -8,19 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var modelData: ModelData
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        TabView() {
+            AboutScreen()
+                .tabItem{ Label("About", systemImage: "face.smiling") }
+            DebugAuthScreen()
+                .tabItem{ Label("Testing", systemImage: "testtube.2") }
+            PasskeyAuthScreen()
+                .tabItem{ Label("Passkeys", systemImage: "person.badge.key") }
+            SettingsScreen()
+                .tabItem{ Label("Settings", systemImage: "gear") }
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(ModelData())
     }
 }

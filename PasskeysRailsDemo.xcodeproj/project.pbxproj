@@ -11,6 +11,18 @@
 		059F2EB62A78B95300641577 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2EB52A78B95300641577 /* ContentView.swift */; };
 		059F2EB82A78B95500641577 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 059F2EB72A78B95500641577 /* Assets.xcassets */; };
 		059F2EBB2A78B95500641577 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 059F2EBA2A78B95500641577 /* Preview Assets.xcassets */; };
+		059F2EC22A78B98F00641577 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2EC12A78B98F00641577 /* ModelData.swift */; };
+		059F2EC42A78C3CA00641577 /* PasskeyAuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2EC32A78C3CA00641577 /* PasskeyAuthScreen.swift */; };
+		059F2EC62A78C3D300641577 /* DebugAuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2EC52A78C3D300641577 /* DebugAuthScreen.swift */; };
+		059F2EC82A78C3DC00641577 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2EC72A78C3DC00641577 /* SettingsScreen.swift */; };
+		059F2ECB2A78C41900641577 /* GreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2ECA2A78C41900641577 /* GreetingView.swift */; };
+		059F2ECD2A78C42200641577 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2ECC2A78C42200641577 /* StatusView.swift */; };
+		059F2ED02A78C80100641577 /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2ECF2A78C80100641577 /* AboutScreen.swift */; };
+		059F2ED22A78CF3000641577 /* KeyValueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2ED12A78CF3000641577 /* KeyValueRow.swift */; };
+		059F2ED42A78D2DE00641577 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2ED32A78D2DE00641577 /* TextInput.swift */; };
+		059F2ED62A78DC6D00641577 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2ED52A78DC6D00641577 /* API.swift */; };
+		059F2ED82A78E30E00641577 /* PasskeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2ED72A78E30E00641577 /* PasskeyManager.swift */; };
+		059F2EDA2A78F54000641577 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F2ED92A78F54000641577 /* LogView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +31,19 @@
 		059F2EB52A78B95300641577 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		059F2EB72A78B95500641577 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		059F2EBA2A78B95500641577 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		059F2EC12A78B98F00641577 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		059F2EC32A78C3CA00641577 /* PasskeyAuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasskeyAuthScreen.swift; sourceTree = "<group>"; };
+		059F2EC52A78C3D300641577 /* DebugAuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugAuthScreen.swift; sourceTree = "<group>"; };
+		059F2EC72A78C3DC00641577 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		059F2ECA2A78C41900641577 /* GreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingView.swift; sourceTree = "<group>"; };
+		059F2ECC2A78C42200641577 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		059F2ECF2A78C80100641577 /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
+		059F2ED12A78CF3000641577 /* KeyValueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueRow.swift; sourceTree = "<group>"; };
+		059F2ED32A78D2DE00641577 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
+		059F2ED52A78DC6D00641577 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		059F2ED72A78E30E00641577 /* PasskeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasskeyManager.swift; sourceTree = "<group>"; };
+		059F2ED92A78F54000641577 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		059F2EDB2A7AE54300641577 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +78,12 @@
 			children = (
 				059F2EB32A78B95300641577 /* PasskeysRailsDemoApp.swift */,
 				059F2EB52A78B95300641577 /* ContentView.swift */,
+				059F2EC92A78C3F200641577 /* Screens */,
+				059F2ECE2A78C44300641577 /* Views */,
+				059F2EDC2A7B29C600641577 /* Models & Services */,
 				059F2EB72A78B95500641577 /* Assets.xcassets */,
 				059F2EB92A78B95500641577 /* Preview Content */,
+				059F2EDB2A7AE54300641577 /* README.md */,
 			);
 			path = PasskeysRailsDemo;
 			sourceTree = "<group>";
@@ -65,6 +94,39 @@
 				059F2EBA2A78B95500641577 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		059F2EC92A78C3F200641577 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				059F2ECF2A78C80100641577 /* AboutScreen.swift */,
+				059F2EC32A78C3CA00641577 /* PasskeyAuthScreen.swift */,
+				059F2EC52A78C3D300641577 /* DebugAuthScreen.swift */,
+				059F2EC72A78C3DC00641577 /* SettingsScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		059F2ECE2A78C44300641577 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				059F2ECA2A78C41900641577 /* GreetingView.swift */,
+				059F2ED92A78F54000641577 /* LogView.swift */,
+				059F2ECC2A78C42200641577 /* StatusView.swift */,
+				059F2ED12A78CF3000641577 /* KeyValueRow.swift */,
+				059F2ED32A78D2DE00641577 /* TextInput.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		059F2EDC2A7B29C600641577 /* Models & Services */ = {
+			isa = PBXGroup;
+			children = (
+				059F2EC12A78B98F00641577 /* ModelData.swift */,
+				059F2ED52A78DC6D00641577 /* API.swift */,
+				059F2ED72A78E30E00641577 /* PasskeyManager.swift */,
+			);
+			path = "Models & Services";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +199,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				059F2EC62A78C3D300641577 /* DebugAuthScreen.swift in Sources */,
+				059F2ED42A78D2DE00641577 /* TextInput.swift in Sources */,
+				059F2ECB2A78C41900641577 /* GreetingView.swift in Sources */,
+				059F2ECD2A78C42200641577 /* StatusView.swift in Sources */,
+				059F2EC42A78C3CA00641577 /* PasskeyAuthScreen.swift in Sources */,
+				059F2ED22A78CF3000641577 /* KeyValueRow.swift in Sources */,
 				059F2EB62A78B95300641577 /* ContentView.swift in Sources */,
+				059F2ED02A78C80100641577 /* AboutScreen.swift in Sources */,
+				059F2ED82A78E30E00641577 /* PasskeyManager.swift in Sources */,
 				059F2EB42A78B95300641577 /* PasskeysRailsDemoApp.swift in Sources */,
+				059F2EC82A78C3DC00641577 /* SettingsScreen.swift in Sources */,
+				059F2ED62A78DC6D00641577 /* API.swift in Sources */,
+				059F2EC22A78B98F00641577 /* ModelData.swift in Sources */,
+				059F2EDA2A78F54000641577 /* LogView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
