@@ -1,4 +1,8 @@
-#  PasskeysRails Demo App
+#  PasskeysRails Demo App - iOS demonstration of using passkeys in stead of passwords
+
+<p align="center" >
+Created by <b>Troy Anderson, Allied Code</b> - <a href="https://alliedcode.com">alliedcode.com</a>
+</p>
 
 The purpose of this app is to demonstrate passkey implementation on iOS to authenticate with a back end server (relying party) that uses the passkeys-rails gem.
 
@@ -60,4 +64,4 @@ Read more about supporting passkeys in [Apple's Supporting Passkeys Documentatio
 
 Apple has a good description of the [security of passkeys](https://support.apple.com/en-us/HT213305).  The first claim is that *Passkeys are a replacement for passwords. They are faster to sign in with, easier to use, and much more secure.*
 
-Passkeys are built on the WebAuthentication (or "WebAuthn") standard, which uses public key cryptography.  They have some pretty [readale docs](https://webauthn.guide/) as well.
+Passkeys are built on the WebAuthentication (or "WebAuthn") standard, which uses public key cryptography.  They have some pretty [readable docs](https://webauthn.guide/) as well.
