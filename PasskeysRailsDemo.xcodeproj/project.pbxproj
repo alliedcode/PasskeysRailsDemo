@@ -43,7 +43,6 @@
 		059F2ED52A78DC6D00641577 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		059F2ED72A78E30E00641577 /* PasskeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasskeyManager.swift; sourceTree = "<group>"; };
 		059F2ED92A78F54000641577 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
-		059F2EDB2A7AE54300641577 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +82,6 @@
 				059F2EDC2A7B29C600641577 /* Models & Services */,
 				059F2EB72A78B95500641577 /* Assets.xcassets */,
 				059F2EB92A78B95500641577 /* Preview Content */,
-				059F2EDB2A7AE54300641577 /* README.md */,
 			);
 			path = PasskeysRailsDemo;
 			sourceTree = "<group>";
