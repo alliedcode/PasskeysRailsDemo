@@ -54,7 +54,7 @@ The `passkeys-rails` gem provides the handshaking required to implement registra
 
 There are several configuration options available, but adding `passkeys-rails` to a Rails application and making the application accessible using a secure URL is all that is required to use this sample app.
 
-You may want to consider using [ngrok.io](ngrok.io) or another similar service to serve your local development environment from a secure and publicly accessible URL (so your iPhone can find it).
+You may want to consider using [ngrok.io](https://ngrok.io) or another similar service to serve your local development environment from a secure and publicly accessible URL (so your iPhone can find it).
 
 ## Helpful Documentation  
 
