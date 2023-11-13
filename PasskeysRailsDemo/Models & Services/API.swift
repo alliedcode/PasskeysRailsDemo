@@ -8,12 +8,28 @@
 import Foundation
 import OSLog
 
-enum APIError: Error {
+enum APIError: LocalizedError {
     case apiError(response: APIErrorResponse, httpResponseCode: Int)
     case invalidURL
     case invalidResponseType
     case invalidData(message: String)
     case baseUrlMissing
+    
+    public var description: String {
+        switch self {
+        case .apiError(let response, _):
+            return response.message;
+        case .invalidURL: return "Invalid URL";
+        case .invalidResponseType: return "Invalid response type";
+        case .invalidData(let message): return "Invalid data: \(message)";
+        case .baseUrlMissing: return "Base URL is missing"
+        }
+    }
+    
+    // You need to implement `errorDescription`, not `localizedDescription`.
+    public var errorDescription: String? {
+        return description
+    }
 }
 
 struct APIErrorResponse {
@@ -129,7 +145,6 @@ class API {
         let query: [URLQueryItem]?
         let headers: [String:String]
         let logoutOnUnauthorized: Bool
-        var response: HTTPURLResponse? = nil
         
         init(api: API, method: HTTPMethod, path: String, query: [URLQueryItem]? = nil, headers: [String : String] = [:], logoutOnUnauthorized: Bool = true) {
             self.api = api
@@ -140,15 +155,13 @@ class API {
             self.logoutOnUnauthorized = logoutOnUnauthorized
         }
         
-        mutating func fetch() async throws -> Data {
+        func fetch() async throws -> (Data, HTTPURLResponse) {
             do {
                 var request = URLRequest(url: try api.url(path: path, query: query))
                 
                 request.httpMethod = method.stringValue
                 
-                let methodString = method.stringValue
-                let pathString = path
-                log.debug("Sending request: \(methodString, privacy: .public) \(pathString, privacy: .public)")
+                log.debug("Sending request: \(method.stringValue, privacy: .public) \(path, privacy: .public)")
                 
                 if let body = try method.encodedBody(api.jsonEncoder) {
                     request.httpBody = body
@@ -174,8 +187,6 @@ class API {
                     throw APIError.invalidResponseType
                 }
                 
-                self.response = httpResponse
-                
                 log.debug("Response status code: \(httpResponse.statusCode, privacy: .public)")
                 log.info("Response body: \(String(data: data, encoding: .utf8) ?? "", privacy: .public)")
                 
@@ -183,7 +194,7 @@ class API {
                     throw buildError(data: data, statusCode: httpResponse.statusCode)
                 }
                 
-                return data
+                return (data, httpResponse)
             } catch {
                 log.error("\(error, privacy: .public)")
                 throw error
@@ -191,16 +202,34 @@ class API {
         }
         
         // Convenience version of fetch() that decodes the response body
-        mutating func fetch<Result:Decodable>() async throws -> Result {
-            let data:Data = try await fetch()
+        func fetch<Result:Decodable>() async throws -> Result {
+            let data: Data
+            (data, _) = try await fetch()
             return try api.jsonDecoder.decode(Result.self, from: data)
         }
         
-        // Convenience version of fetch() that ignores the response body
-        mutating func fetch() async throws {
-            let _:Data = try await fetch()
+        // Convenience version of fetch() that decodes the response body and also returns the raw response
+        func fetch<Result:Decodable>() async throws -> (Result, HTTPURLResponse) {
+            let data: Data
+            let response: HTTPURLResponse
+            (data, response) = try await fetch()
+            
+            return (try api.jsonDecoder.decode(Result.self, from: data), response)
         }
         
+        // Convenience version of fetch() that returns the raw response
+        func fetch() async throws -> HTTPURLResponse {
+            let response: HTTPURLResponse
+            (_, response) = try await fetch()
+            
+            return response
+        }
+        
+        // Convenience version of fetch() that ignores the response body
+        func fetch() async throws {
+            (_, _) = try await fetch()
+        }
+
         struct APIErrorResponseWrapper: Decodable {
             let error: APIErrorResponse
         }
@@ -233,13 +262,13 @@ extension API {
 
 extension API {
     func passkeyRegistrationChallenge(username: String) async throws -> CredentialCreationOptions {
-        var request = APIRequest(api: self, method: .post(["username": username]), path: API.passkeyChallengePath)
+        let request = APIRequest(api: self, method: .post(["username": username]), path: API.passkeyChallengePath)
         
         return try await request.fetch()
     }
     
     func passkeyAuthenticationChallenge() async throws -> CredentialAssertionOptions {
-        var request = APIRequest(api: self, method: .post(), path: API.passkeyChallengePath)
+        let request = APIRequest(api: self, method: .post(), path: API.passkeyChallengePath)
         
         return try await request.fetch()
     }
@@ -256,7 +285,7 @@ extension API {
 
     func passkeyRegister<P:Encodable>(credential: RegistrationCredential, authenticatable: Authenticatable<P>?) async throws -> AuthResponse {
         let params = RegisterParams(credential: credential, authenticatable: authenticatable)
-        var request = APIRequest(api: self, method: .post(params), path: API.passkeyFinalizeRegistrationPath)
+        let request = APIRequest(api: self, method: .post(params), path: API.passkeyFinalizeRegistrationPath)
         
         return try await request.fetch()
     }
@@ -268,13 +297,13 @@ extension API {
     }
     
     func passkeyAuthenticate(credential: AssertionCredential) async throws -> AuthResponse {
-        var request = APIRequest(api: self, method: .post(credential), path: API.passkeyFinalizeAuthenticationPath)
+        let request = APIRequest(api: self, method: .post(credential), path: API.passkeyFinalizeAuthenticationPath)
         
         return try await request.fetch()
     }
     
     func passkeyRefresh(authToken: String) async throws -> AuthResponse {
-        var request = APIRequest(api: self, method: .post(["auth_token": authToken]), path: API.passkeyRefreshPath)
+        let request = APIRequest(api: self, method: .post(["auth_token": authToken]), path: API.passkeyRefreshPath)
         return try await request.fetch()
     }
     
@@ -286,7 +315,7 @@ extension API {
     
     func passkeyDebugRegister<P:Encodable>(username: String, authenticatable: Authenticatable<P>? = nil) async throws -> AuthResponse {
         let params = DebugRegisterParams(username: username, authenticatable: authenticatable)
-        var request = APIRequest(api: self, method: .post(params), path: API.passkeyDebugRegisterPath)
+        let request = APIRequest(api: self, method: .post(params), path: API.passkeyDebugRegisterPath)
         
         return try await request.fetch()
     }
@@ -298,7 +327,7 @@ extension API {
     }
 
     func passkeyDebugLogin(username: String) async throws -> AuthResponse {
-        var request = APIRequest(api: self, method: .post(["username": username]), path: API.passkeyDebugLoginPath)
+        let request = APIRequest(api: self, method: .post(["username": username]), path: API.passkeyDebugLoginPath)
         
         return try await request.fetch()
     }

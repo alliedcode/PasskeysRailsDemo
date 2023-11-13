@@ -46,8 +46,8 @@ struct DebugAuthScreen: View {
                             LogView(entries: $authLog)
                                 .animation(.default, value: authLog)
                         }
-                        
                     }
+                    .autocapitalization(.none)
                 }
                 
                 Spacer()
@@ -104,7 +104,7 @@ struct DebugAuthScreen: View {
         Task {
             do {
                 let result = try await modelData.api.passkeyDebugRegister(username: registerUsername, className: className == "" ? nil : className)
-                registerLog.append(result.authToken)
+                registerLog.append("Success!  Auth Token: \(result.authToken)")
             } catch {
                 registerLog.append(error.localizedDescription)
             }
@@ -115,7 +115,7 @@ struct DebugAuthScreen: View {
         Task {
             do {
                 let result = try await modelData.api.passkeyDebugLogin(username: authUsername)
-                authLog.append(result.authToken)
+                authLog.append("Success!  Auth Token: \(result.authToken)")
             } catch {
                 authLog.append(error.localizedDescription)
             }
