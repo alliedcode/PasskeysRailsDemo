@@ -58,6 +58,18 @@ struct RegistrationCredential: Encodable {
         response = Response(registration: registration)
     }
     
+    enum CodingKeys: CodingKey {
+        case type, id, rawId, response
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container: KeyedEncodingContainer<CodingKeys> = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.type, forKey: .type)
+        try container.encode(self.rawId, forKey: .rawId)
+        try container.encode(self.response, forKey: .response)
+    }
+    
     struct Response: Encodable {
         let attestationObject: String
         let clientDataJSON: String
@@ -81,6 +93,18 @@ struct AssertionCredential: Encodable {
         response = Response(assertion: assertion)
     }
     
+    enum CodingKeys: CodingKey {
+        case type, id, rawId, response
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container: KeyedEncodingContainer<CodingKeys> = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.type, forKey: .type)
+        try container.encode(self.rawId, forKey: .rawId)
+        try container.encode(self.response, forKey: .response)
+    }
+
     struct Response: Encodable {
         let authenticatorData: String
         let clientDataJSON: String
