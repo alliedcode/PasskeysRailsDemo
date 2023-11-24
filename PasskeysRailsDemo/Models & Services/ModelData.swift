@@ -19,7 +19,6 @@ class ModelData: ObservableObject {
     @AppStorage("apiUrl") var apiUrl: String = "localhost:3000" {
         didSet {
             config.apiBase = URL(string: apiUrl)
-            api = API(config)
         }
     }
     
@@ -27,7 +26,6 @@ class ModelData: ObservableObject {
         didSet {
             // Rebuild the PasskeyManager if the domain changes (not really a production use case)
             config.domain = passkeyDomain
-            passkeyManager = PasskeyManager(config)
         }
     }
     
@@ -35,11 +33,29 @@ class ModelData: ObservableObject {
     
     @Published var loggedIn = false
     @Published var username: String?
+
+    var passkeyManager: PasskeyManager {
+        let passkeyManager = _passkeyManager ?? PasskeyManager(config)
+        _passkeyManager = passkeyManager
+        
+        return passkeyManager
+    }
     
-    private(set) var api: API
-    private(set) var config: Config
-    private(set) var passkeyManager: PasskeyManager
-    
+    var api: API {
+        let api = _api ?? API(config)
+        _api = api
+        
+        return api
+    }
+
+    private(set) var config = Config(domain: "localhost") {
+        didSet {
+            _passkeyManager = nil
+            _api = nil
+        }
+    }
+    private var _passkeyManager: PasskeyManager?
+    private var _api: API?
     private var auth: AuthResponse? {
         didSet {
             loggedIn = auth != nil
@@ -48,9 +64,7 @@ class ModelData: ObservableObject {
     }
     
     init() {
-        config = Config(domain: "localhost")
-        passkeyManager = PasskeyManager(config)
-        api = API(config)
+        config = Config(domain: passkeyDomain, apiBase: URL(string: apiUrl))
     }
     
     func loginWith(_ authResponse: AuthResponse) {
