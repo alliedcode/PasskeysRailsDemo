@@ -14,8 +14,10 @@ struct ContentView: View {
         TabView() {
             AboutScreen()
                 .tabItem{ Label("About", systemImage: "face.smiling") }
+#if targetEnvironment(simulator)
             DebugAuthScreen()
                 .tabItem{ Label("Testing", systemImage: "testtube.2") }
+#endif
             PasskeyAuthScreen()
                 .tabItem{ Label("Passkeys", systemImage: "person.badge.key") }
             SettingsScreen()

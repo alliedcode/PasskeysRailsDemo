@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if targetEnvironment(simulator)
 struct DebugAuthScreen: View {
     @EnvironmentObject var modelData: ModelData
     @State var registerUsername = ""
@@ -130,3 +131,4 @@ struct DebugAuthScreen_Previews: PreviewProvider {
             .environmentObject(ModelData())
     }
 }
+#endif
