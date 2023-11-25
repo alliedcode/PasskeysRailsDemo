@@ -19,17 +19,23 @@ This app requires a little configuration to work with your server.
 3. You want to use passkeys to register and authenticate users because, among other things, you're tired of typing `Password123` all the time.
 
 4. You want to integrate passkeys into your iOS, iPadOS, or MacOS app and are ready to see how easy it is to use passkeys to replace passwords.
- 
+
+## Setup - Team ID and Bundle Identifier
+In the Signing & Capabilities tab of the PasskeyRailsDemo target change the Team to your Apple Developer Account Team and set the Bundle Identifier. These will be used to [setup your apple-app-site-association](#Ensure-`.well-known/apple-app-site-association`-is-in-place)
+
+Your Team ID can be found in the Membership Details page of your [Apple Developer Account](https://developer.apple.com/account)
+
 ## Setup - Configure Associated Domains
 
 
-### Add the associated domain to your XCode project
+### Edit the associated domain in your XCode project
+The demo project ships with an Entitlements file and `webcredentials` configured for `example.com`. If your relying party server is at `my.server.com`, you would want to edit the associated domain entry to `webcredentials:my.server.com`.
 
-For example, if the relying party server is at `my.server.com`, you would want an associated domain entry with `webcredentials:my.server.com`.
+As of this writing, Associated Domain entries are changed in XCode, in the Signing & Capabilities tab of your Target.
 
-As of this writing, Associated Domain entries are added to XCode in the Signing & Capabilities tab of your Target.
+If `webcredentials` are not in place, the request to create passkey credentials will return an error. 
 
-If this is not in place, the request to create credentials will return an error.
+During testing it can be helpful to add a query string to the associated domain entry for example `webcredentials:my.server.com?mode=developer` - Further details can be found in [Apple's Associated Domains Entitlement Documentation](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_associated-domains)
 
 ### Ensure `.well-known/apple-app-site-association` is in place
 The relying party (your server) must have a proper entry in the `.well-known/apple-app-site-association` file and that file must be publicly accessible via a GET request without any redirection.
@@ -45,6 +51,7 @@ For example, visiting `https://my.server.com/.well-known/apple-app-site-associat
    }
 }
 ```
+If the iOS device is unable to match the `webcredentials` and the `.well-known/apple-app-site-association`, the request to create passkey credentials will return an error. 
 
 You can read more about supporting associated domains in [Apple's Supporting Associated Domains Documentation](https://developer.apple.com/documentation/xcode/supporting-associated-domains)
 
