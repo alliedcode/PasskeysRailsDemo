@@ -16,6 +16,15 @@ struct LogView: View {
                 EmptyView()
             } else {
                 VStack {
+                    Button("Clear Log") {
+                        withAnimation {
+                            entries.wrappedValue = []
+                        }
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundColor(.accentColor)
+                    .font(.body)
+                    
                     VStack {
                         ForEach(entries.wrappedValue, id: \.self) { log in
                             Text(log)
@@ -27,14 +36,6 @@ struct LogView: View {
                     .background(Color.black)
                     .foregroundColor(.green)
                     
-                    Button("Clear Log") {
-                        withAnimation {
-                            entries.wrappedValue = []
-                        }
-                    }
-                    .buttonStyle(.plain)
-                    .foregroundColor(.accentColor)
-                    .font(.body)
                 }
             }
         }

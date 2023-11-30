@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StatusView: View {
     @EnvironmentObject var modelData: ModelData
-
+    
     var body: some View {
         VStack {
             Text("Status")
@@ -18,16 +18,21 @@ struct StatusView: View {
             if modelData.loggedIn {
                 Text("You are logged in.")
                 KeyValueRow(label: "Username", value: modelData.username ?? "")
+                    .padding(.bottom)
             } else {
                 Text("You are not logged in.")
+                    .font(.footnote)
+                    .padding(.bottom)
             }
-        }
-        .padding(.bottom, 6)
 
-        VStack {
             KeyValueRow(label: "API URL", value: modelData.apiUrl)
+                .padding(.bottom)
+            
             KeyValueRow(label: "Default Auth Class", value: modelData.defaultAuthClassName)
+                .padding(.bottom)
         }
+        .frame(maxWidth: .infinity)
+        .foregroundColor(.secondary)
     }
 }
 

@@ -27,6 +27,8 @@ struct DebugAuthScreen: View {
                             Text("Registration")
                                 .font(.headline)
                             TextInput(.username, text: $registerUsername)
+                                .textContentType(.username)
+                                .autocapitalization(.none)
                             TextInput(.classname, text: $className)
                             debugRegisterButton()
                             debugRegisterFooter()
@@ -50,15 +52,16 @@ struct DebugAuthScreen: View {
                     }
                     .autocapitalization(.none)
                 }
-                
+                .padding(.horizontal)
+
                 Spacer()
                 Divider()
                 StatusView()
                 Divider()
             }
-            .padding(.horizontal)
             .buttonStyle(.borderedProminent)
             .navigationTitle("Test Passkeys")
+            .frame(maxWidth: .infinity)
         }
         .task {
             if className == "" {

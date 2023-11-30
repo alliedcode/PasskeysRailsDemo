@@ -18,7 +18,7 @@ enum APIError: LocalizedError {
     public var description: String {
         switch self {
         case .apiError(let response, _):
-            return response.message;
+            return response.description;
         case .invalidURL: return "Invalid URL";
         case .invalidResponseType: return "Invalid response type";
         case .invalidData(let message): return "Invalid data: \(message)";
@@ -36,6 +36,9 @@ struct APIErrorResponse {
     let context: String
     let message: String
     let code: String
+    var description: String {
+        "[\(context)][\(code)] \(message)"  
+    }
 }
 
 extension APIErrorResponse: Decodable {

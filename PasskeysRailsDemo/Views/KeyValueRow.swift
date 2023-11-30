@@ -12,16 +12,12 @@ struct KeyValueRow: View {
     let value: String
     
     var body: some View {
-        HStack {
+        VStack {
             Text(label)
                 .font(.headline)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-
-            Spacer()
-
+        
             Text(value == "" ? "<Unset>" : value)
-                .font(.body)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.footnote)
         }
     }
 }

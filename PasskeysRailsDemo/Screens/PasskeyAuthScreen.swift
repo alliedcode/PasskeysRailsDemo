@@ -28,6 +28,7 @@ struct PasskeyAuthScreen: View {
                                 .font(.headline)
                             TextInput(.username, text: $username)
                                 .textContentType(.username)
+                                .autocapitalization(.none)
                             TextInput(.classname, text: $className)
                             registerButton()
                             registerFooter()
